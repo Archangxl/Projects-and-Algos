@@ -60,6 +60,29 @@ class LinkedList {
         }
         return didTheInspectorFindTheTrainCartValue;
     }
+
+    displayAllTrainCarts() {
+        let allTrains = '';
+
+        if (this.locomotive === null) {
+            return "This list is empty";
+        } else if (this.locomotive.nextTrainCart === null) {
+            allTrains += this.locomotive.trainCart;
+            return allTrains;
+        } else {
+            allTrains += this.locomotive.trainCart;
+            let trainCartInspector = this.locomotive.nextTrainCart;
+            
+            while(trainCartInspector !== null) {
+                if (trainCartInspector.trainCart === null) {
+                    break;
+                } 
+                allTrains += "," + trainCartInspector.trainCart;
+                trainCartInspector = trainCartInspector.nextTrainCart;
+            }
+            return allTrains;
+        }
+    }
 }
 
 const newlinkedList = new LinkedList;
@@ -67,7 +90,8 @@ newlinkedList.addCartToFront("1");
 newlinkedList.addCartToFront("2");
 newlinkedList.addCartToFront("3");
 newlinkedList.addCartToFront("4");
-newlinkedList.RemoveFront();
+//newlinkedList.RemoveFront();
 //console.log(newlinkedList.displayLocomotiveTrainCartAtFront());
 //console.log(newlinkedList.doesTrainContainNodeTrainCart("4"));
-console.log(newlinkedList.lengthOfTrain());
+//console.log(newlinkedList.lengthOfTrain());
+//console.log(newlinkedList.displayAllTrainCarts());
