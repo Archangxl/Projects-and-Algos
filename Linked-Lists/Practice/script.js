@@ -33,7 +33,7 @@ class LinkedList {
         return this.locomotive.trainCart;
     }
 
-    findSumOfTrainCarts() {
+    lengthOfTrain() {
         let trainCartInspector = this.locomotive;
         let sumOfTrainCarts = 0;
 
@@ -69,5 +69,5 @@ newlinkedList.addCartToFront("3");
 newlinkedList.addCartToFront("4");
 newlinkedList.RemoveFront();
 //console.log(newlinkedList.displayLocomotiveTrainCartAtFront());
-//console.log(newlinkedList.findSumOfTrainCarts());
-console.log(newlinkedList.doesTrainContainNodeTrainCart("4"));
+//console.log(newlinkedList.doesTrainContainNodeTrainCart("4"));
+console.log(newlinkedList.lengthOfTrain());
