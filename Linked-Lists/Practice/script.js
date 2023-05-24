@@ -83,15 +83,60 @@ class LinkedList {
             return allTrains;
         }
     }
+
+    maxTrainCart() {
+        let maxTrainCart = this.locomotive.trainCart;
+        let trainCartInspector = this.locomotive;
+        while (trainCartInspector.nextTrainCart !== null) {
+            if (maxTrainCart > trainCartInspector.nextTrainCart.trainCart) {
+                trainCartInspector = trainCartInspector.nextTrainCart;
+            } else {
+                maxTrainCart = trainCartInspector.nextTrainCart.trainCart;
+                trainCartInspector = trainCartInspector.nextTrainCart;
+            }
+        }
+        return maxTrainCart;
+    }
+
+    smallestTrainCart() {
+        let smallestTrainCart = this.locomotive.trainCart;
+        let trainCartInspector = this.locomotive;
+        while (trainCartInspector.nextTrainCart !== null) {
+            if (smallestTrainCart < trainCartInspector.nextTrainCart.trainCart) {
+                trainCartInspector = trainCartInspector.nextTrainCart;
+            } else {
+                smallestTrainCart = trainCartInspector.nextTrainCart.trainCart;
+                trainCartInspector = trainCartInspector.nextTrainCart;
+            }
+        }
+        return smallestTrainCart;
+    }
+
+    averageTrainCart() {
+        let averageTrainCart = 0;
+        let trainCartLength = 0;
+        let trainCartInspector = this.locomotive;
+        while(trainCartInspector !== null) {
+            averageTrainCart+=trainCartInspector.trainCart;
+            trainCartLength++;
+            trainCartInspector = trainCartInspector.nextTrainCart;
+        }
+        return averageTrainCart / trainCartLength;
+    }
 }
 
 const newlinkedList = new LinkedList;
-newlinkedList.addCartToFront("1");
-newlinkedList.addCartToFront("2");
-newlinkedList.addCartToFront("3");
-newlinkedList.addCartToFront("4");
+newlinkedList.addCartToFront(7);
+newlinkedList.addCartToFront(1);
+newlinkedList.addCartToFront(10);
+newlinkedList.addCartToFront(2);
+newlinkedList.addCartToFront(3);
+newlinkedList.addCartToFront(4);
 //newlinkedList.RemoveFront();
 //console.log(newlinkedList.displayLocomotiveTrainCartAtFront());
 //console.log(newlinkedList.doesTrainContainNodeTrainCart("4"));
 //console.log(newlinkedList.lengthOfTrain());
 //console.log(newlinkedList.displayAllTrainCarts());
+//console.log(newlinkedList.maxTrainCart());
+//console.log(newlinkedList.smallestTrainCart());
+//console.log(newlinkedList.averageTrainCart());
