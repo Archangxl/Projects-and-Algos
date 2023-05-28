@@ -30,7 +30,8 @@ class LinkedList {
         if (!this.locomotive) {
             return null;
         }
-        return this.locomotive.trainCart;
+        console.loc(this.locomotive.trainCart);
+        return this;
     }
 
     lengthOfTrain() {
@@ -45,7 +46,8 @@ class LinkedList {
             }
             trainCartInspector = trainCartInspector.nextTrainCart;
         }
-        return sumOfTrainCarts;
+        console.log(sumOfTrainCarts);
+        return this;
     }
 
     doesTrainContainNodeTrainCart(trainCartValue) {
@@ -58,7 +60,8 @@ class LinkedList {
             }
             trainCartInspector = trainCartInspector.nextTrainCart;
         }
-        return didTheInspectorFindTheTrainCartValue;
+        console.log(didTheInspectorFindTheTrainCartValue);
+        return this;
     }
 
     displayAllTrainCarts() {
@@ -80,7 +83,8 @@ class LinkedList {
                 allTrains += "," + trainCartInspector.trainCart;
                 trainCartInspector = trainCartInspector.nextTrainCart;
             }
-            return allTrains;
+            console.log(allTrains);
+            return this;
         }
     }
 
@@ -95,7 +99,8 @@ class LinkedList {
                 trainCartInspector = trainCartInspector.nextTrainCart;
             }
         }
-        return maxTrainCart;
+        console.log(maxTrainCart);
+        return this;
     }
 
     smallestTrainCart() {
@@ -109,7 +114,8 @@ class LinkedList {
                 trainCartInspector = trainCartInspector.nextTrainCart;
             }
         }
-        return smallestTrainCart;
+        console.log(smallestTrainCart);
+        return this;
     }
 
     averageTrainCart() {
@@ -121,8 +127,42 @@ class LinkedList {
             trainCartLength++;
             trainCartInspector = trainCartInspector.nextTrainCart;
         }
-        return averageTrainCart / trainCartLength;
+        console.log(averageTrainCart / trainCartLength);
+        return this;
     }
+
+    whatIsTheLastTrainCart() {
+        let trainCartInspector = this.locomotive;
+
+        while (trainCartInspector.nextTrainCart !== null) {
+            trainCartInspector = trainCartInspector.nextTrainCart;
+        }
+        console.log(trainCartInspector.trainCart);
+        return this;
+    }
+
+    removeTheLastTrainCart() {
+        let trainCartInspector = this.locomotive;
+
+        while (trainCartInspector.nextTrainCart.nextTrainCart !== null) {
+            trainCartInspector = trainCartInspector.nextTrainCart;
+        }
+        trainCartInspector.nextTrainCart = null;
+        return this;
+    }
+
+    addTrainCartToTheBack(value) {
+        let trainCartInspector = this.locomotive;
+        let newTrainCart = new Node();
+        newTrainCart.trainCart = value;
+        
+        while(trainCartInspector.nextTrainCart !== null) {
+            trainCartInspector = trainCartInspector.nextTrainCart;
+        }
+        trainCartInspector.nextTrainCart = newTrainCart;
+        return this;
+    } 
+
 }
 
 const newlinkedList = new LinkedList;
@@ -140,3 +180,6 @@ newlinkedList.addCartToFront(4);
 //console.log(newlinkedList.maxTrainCart());
 //console.log(newlinkedList.smallestTrainCart());
 //console.log(newlinkedList.averageTrainCart());
+//console.log(newlinkedList.whatIsTheLastTrainCart());
+//console.log(newlinkedList.removeTheLastTrainCart().displayAllTrainCarts());
+console.log(newlinkedList.addTrainCartToTheBack(1).displayAllTrainCarts());
