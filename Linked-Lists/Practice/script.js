@@ -30,8 +30,7 @@ class LinkedList {
         if (!this.locomotive) {
             return null;
         }
-        console.loc(this.locomotive.trainCart);
-        return this;
+        return this.locomotive.trainCart;
     }
 
     lengthOfTrain() {
@@ -46,8 +45,7 @@ class LinkedList {
             }
             trainCartInspector = trainCartInspector.nextTrainCart;
         }
-        console.log(sumOfTrainCarts);
-        return this;
+        return sumOfTrainCarts;
     }
 
     doesTrainContainNodeTrainCart(trainCartValue) {
@@ -60,8 +58,7 @@ class LinkedList {
             }
             trainCartInspector = trainCartInspector.nextTrainCart;
         }
-        console.log(didTheInspectorFindTheTrainCartValue);
-        return this;
+        return didTheInspectorFindTheTrainCartValue;
     }
 
     displayAllTrainCarts() {
@@ -83,8 +80,7 @@ class LinkedList {
                 allTrains += "," + trainCartInspector.trainCart;
                 trainCartInspector = trainCartInspector.nextTrainCart;
             }
-            console.log(allTrains);
-            return this;
+            return allTrains;
         }
     }
 
@@ -99,8 +95,7 @@ class LinkedList {
                 trainCartInspector = trainCartInspector.nextTrainCart;
             }
         }
-        console.log(maxTrainCart);
-        return this;
+        return maxTrainCart;
     }
 
     smallestTrainCart() {
@@ -114,8 +109,7 @@ class LinkedList {
                 trainCartInspector = trainCartInspector.nextTrainCart;
             }
         }
-        console.log(smallestTrainCart);
-        return this;
+        return smallestTrainCart;
     }
 
     averageTrainCart() {
@@ -127,8 +121,7 @@ class LinkedList {
             trainCartLength++;
             trainCartInspector = trainCartInspector.nextTrainCart;
         }
-        console.log(averageTrainCart / trainCartLength);
-        return this;
+        return averageTrainCart / trainCartLength;
     }
 
     whatIsTheLastTrainCart() {
@@ -137,8 +130,7 @@ class LinkedList {
         while (trainCartInspector.nextTrainCart !== null) {
             trainCartInspector = trainCartInspector.nextTrainCart;
         }
-        console.log(trainCartInspector.trainCart);
-        return this;
+        return trainCartInspector.trainCart;
     }
 
     removeTheLastTrainCart() {
@@ -163,6 +155,37 @@ class LinkedList {
         return this;
     } 
 
+    moveMinimumTrainCartValueToTheFront() {
+        let minimumTrainCart = this.smallestTrainCart();
+        let trainCartInspector = this.locomotive;
+
+        while (trainCartInspector.nextTrainCart.nextTrainCart !== null) {
+            if (trainCartInspector.nextTrainCart.trainCart === minimumTrainCart) {
+                trainCartInspector.nextTrainCart = trainCartInspector.nextTrainCart.nextTrainCart;
+                continue;
+            }
+            trainCartInspector = trainCartInspector.nextTrainCart;
+        }
+
+        this.addCartToFront(minimumTrainCart);
+        return this;
+    }
+
+    moveMaximumTrainCartValueToTheBack() {
+        let maximumTrainCart = this.maxTrainCart();
+
+        let trainCartInspector = this.locomotive;
+
+        while (trainCartInspector.nextTrainCart.nextTrainCart !== null) {
+            if (trainCartInspector.nextTrainCart.trainCart === maximumTrainCart) {
+                trainCartInspector.nextTrainCart = trainCartInspector.nextTrainCart.nextTrainCart;
+                continue;
+            }
+            trainCartInspector = trainCartInspector.nextTrainCart;
+        }
+        this.addTrainCartToTheBack(maximumTrainCart);
+        return this;
+    }
 }
 
 const newlinkedList = new LinkedList;
@@ -182,4 +205,6 @@ newlinkedList.addCartToFront(4);
 //console.log(newlinkedList.averageTrainCart());
 //console.log(newlinkedList.whatIsTheLastTrainCart());
 //console.log(newlinkedList.removeTheLastTrainCart().displayAllTrainCarts());
-console.log(newlinkedList.addTrainCartToTheBack(1).displayAllTrainCarts());
+//console.log(newlinkedList.addTrainCartToTheBack(1).displayAllTrainCarts());
+//console.log(newlinkedList.moveMinimumTrainCartValueToTheFront().displayAllTrainCarts());
+//console.log(newlinkedList.moveMaximumTrainCartValueToTheBack().displayAllTrainCarts());
